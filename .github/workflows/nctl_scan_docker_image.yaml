@@ -19,10 +19,22 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v4
       
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v3
+    - name: Download and Install nctl
+      shell: bash
+      run: |
+        #!/bin/bash
+
+        shopt -s expand_aliases
+        set -e
+        # Determine the download URL based on the release version
+
+        curl -L -o nctl.zip "https://nirmata-downloads.s3.us-east-2.amazonaws.com/nctl/nctl_4.0.1/nctl_4.0.1_linux_amd64.zip"
+        ls -lrt
+        unzip -o nctl.zip
+        ls -lrt
+        chmod +x nctl
 
     - name: Run the Docker command
-      run: |
-        docker run -e NIRMATA_URL=${{ secrets.NIRMATA_URL }} -e NIRMATA_API_KEY=${{ secrets.NIRMATA_API_KEY }} -v ${{ github.workspace }}:/work --workdir /work eddycharly/nctl scan git-repo --policies /work/policy --publish
-      shell: bash
+      run: ./nctl scan repository --policies ./policy/
+    
+    - run: echo "🍏 This job's status is ${{ job.status }}."
