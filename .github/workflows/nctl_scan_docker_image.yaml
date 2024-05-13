@@ -35,6 +35,6 @@ jobs:
         chmod +x nctl
 
     - name: Run the Docker command
-      run: ./nctl scan repository --policies ./policy/
+      run: ./nctl scan repository --policies ./policy/ --debug
     
     - run: echo "🍏 This job's status is ${{ job.status }}."
