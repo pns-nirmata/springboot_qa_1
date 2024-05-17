@@ -39,5 +39,6 @@ jobs:
 
       - name: NCTL Scan - Repository
         run: ./nctl scan repository --policies ./policy/
+
   
       - run: echo "🍏 This job's status is ${{ job.status }}."
