@@ -30,8 +30,8 @@ jobs:
           shopt -s expand_aliases
           set -e
           # Determine the download URL based on the release version
-
-          curl -L -o nctl.zip "https://nirmata-downloads.s3.us-east-2.amazonaws.com/nctl/nctl_4.0.1/nctl_4.0.1_linux_amd64.zip"
+          
+          curl -L -o nctl.zip "https://github.com/nirmata/go-nctl/releases/download/v4.0.2-beta.1/nctl_4.0.2-beta.1_linux_amd64.zip"
           ls -lrt
           unzip -o nctl.zip
           ls -lrt
